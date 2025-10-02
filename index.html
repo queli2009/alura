@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planilha Interativa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        td input {
+            width: 100%;
+            padding: 5px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .results {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Planilha Interativa</h1>
+    <table id="planilha">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" placeholder="Nome do item"></td>
+                <td><input type="number" class="valor" placeholder="Valor"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Nome do item"></td>
+                <td><input type="number" class="valor" placeholder="Valor"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="button" onclick="adicionarLinha()">Adicionar Linha</button>
+    <div class="results">
+        <p><strong>Soma Total:</strong> <span id="soma"></span></p>
+        <p><strong>Média dos Valores:</strong> <span id="media"></span></p>
+    </div>
+
+    <script>
+        function atualizarResultados() {
+            const valores = document.querySelectorAll('.valor');
+            let soma = 0;
+            let count = 0;
+
+            valores.forEach(input => {
+                let valor = parseFloat(input.value);
+                if (!isNaN(valor)) {
+                    soma += valor;
+                    count++;
+                }
+            });
+
+            const media = count > 0 ? soma / count : 0;
+
+            document.getElementById('soma').textContent = soma.toFixed(2);
+            document.getElementById('media').textContent = media.toFixed(2);
+        }
+
+        function adicionarLinha() {
+            const table = document.getElementById('planilha').getElementsByTagName('tbody')[0];
+            const novaLinha = table.insertRow();
+            const celulaItem = novaLinha.insertCell(0);
+            const celulaValor = novaLinha.insertCell(1);
+
+            celulaItem.innerHTML = '<input type="text" placeholder="Nome do item">';
+            celulaValor.innerHTML = '<input type="number" class="valor" placeholder="Valor" oninput="atualizarResultados()">';
+
+            atualizarResultados();  // Atualizar os resultados após adicionar uma linha
+        }
+
+        // Atualizar resultados sempre que um valor for modificado
+        document.querySelectorAll('.valor').forEach(input => {
+            input.addEventListener('input', atualizarResultados);
+        });
+    </script>
+
+</body>
+</html>
