@@ -1,0 +1,25 @@
+/* Estilos gerais do corpo da página */
+body {
+    font-family: 'Arial', sans-serif;  /* Fonte mais legível */
+    background-color: #f4f4f9;  /* Cor de fundo suave */
+    padding: 20px;  /* Espaçamento interno */
+    margin: 0;
+    color: #333;  /* Cor do texto padrão */
+}
+
+/* Título */
+h1 {
+    font-size: 2.5em;  /* Tamanho maior para o título */
+    text-align: center;  /* Alinha o título ao centro */
+    color: #4CAF50;  /* Cor verde */
+    margin-bottom: 20px;  /* Espaço abaixo do título */
+}
+
+/* Estilo da tabela */
+table {
+    width: 100%;  /* A tabela ocupa toda a largura da tela */
+    border-collapse: collapse;  /* Remove o espaço entre as bordas */
+    margin-top: 30px;  /* Espaço acima da tabela */
+}
+
+/* Cabeçalho da tabel*
